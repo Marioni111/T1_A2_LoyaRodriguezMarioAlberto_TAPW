@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .especialidad {
+            color: green;
+            font-style: italic;
+
+        }
+    </style>
+    <title>Pruebas VUE</title>
+</head>
+
+<body>
+    <div id="materias">
+        <div class="container mb-3">
+            <label for="exampleFormControlInput1"  class="form-label">Nombre</label>
+            <input type="email" class="form-control" v-model="nombre" id="exampleFormControlInput1" placeholder="Ingrese su nombre">
+        </div>
+
+        <div class="container mb-3">
+            <select class="form-select" mb-3 aria-label="Default select example" v-model="edad">
+                <option selected>Edad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="1">4</option>
+                <option value="2">5</option>
+                <option value="3">6</option>
+                <option value="1">7</option>
+                <option value="2">8</option>
+                <option value="3">9</option>
+
+            </select>
+        </div>
+
+        <div class="container mb-3">
+            <select class="form-select" mb-3 aria-label="Default select example" v-model="semestre">
+                <option selected>Seleccione el semestre</option>
+                <option value="1">Semestre 1</option>
+                <option value="2">Semestre 2</option>
+                <option value="3">Semestre 3</option>
+                <option value="1">Semestre 4</option>
+                <option value="2">Semestre 5</option>
+                <option value="3">Semestre 6</option>
+                <option value="1">Semestre 7</option>
+                <option value="2">Semestre 8</option>
+                <option value="3">Semestre 9</option>
+            </select>
+        </div>
+
+
+
+
+        <div class="container mb-3">
+            <select class="form-select" mb-3 aria-label="Default select example" v-model="carrera">
+                <option selected>Seleccione la carrera</option>
+                <option value="1">Carrera 1</option>
+                <option value="2">Carrera 2</option>
+                <option value="3">Carrera 3</option>
+                <option value="1">Carrera 4</option>
+                <option value="2">Carrera 5</option>
+                <option value="3">Carrera 6</option>
+                <option value="1">Carrera 7</option>
+                <option value="2">Carrera 8</option>
+                <option value="3">Carrera 9</option>
+            </select>
+
+            <h1>Materias</h1>
+            <br>
+            <input
+                v-on:keyup.enter="materiasNuevas2.push({id:materiasNuevas2.length + 1, nombre: nuevaMateria, esp: especialidad})"
+                type="text" v-model="nuevaMateria" placeholder="Ingresa materia a cursar">
+            <br>
+            <label><input type="checkbox" v-model="especialidad">ESPECIALIDAD</label>
+
+            <br>
+
+            <li v-for="e in materiasNuevas2" :key="e.id">{{e.nombre}} {{e.esp}}</li>
+
+            <h1>Actividades extraescolares</h1>
+            <br>
+            <input v-on:keyup.enter="materiasNuevas.push({id:materiasNuevas.length + 1, nombre: nuevaMateria2})"
+                type="text" v-model="nuevaMateria2" placeholder="Ingresa materia a cursar">
+            <br>
+
+
+            <li v-for="e in materiasNuevas" :key="e.id">{{e.nombre}}</li>
+
+
+
+            <br>
+            <h1>Resgistro final  </h1>
+            <h5>{{nombre}}</h5>
+            <p>Edad: {{edad}}</p>
+            <p>Semestre: {{semestre}}</p>
+            <p>Carrera: {{carrera}}</p>
+            <p>Materias</p>
+            <li v-for="e in materiasNuevas2" :key="e.id">{{e.nombre}} {{e.esp}}</li>
+            
+            <p>Actividades</p>
+            <li v-for="e in materiasNuevas" :key="e.id">{{e.nombre}}</li>
+
+        </div>
+    </div>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const obj = Vue.createApp({
+            data() {
+                return {
+                    nombre: '',
+                    tipoUsuario: "Admin",
+                    mensaje: 'Bienvvenido Luke Skywalker',
+                    elementos1: ['Deportes', 'Danza', 'Musica'],
+                    elementos2: [{ id: 1, txt: 'Prog WEB', esp: true },
+                    { id: 2, txt: 'Redes', esp: false },
+                    { id: 3, txt: 'Gestion de Proyectos', esp: true }],
+                    elementos3: {
+                        'obj1': { id: 1, txt: 'Prog WEB' },
+                        'obj2': { id: 2, txt: 'Redes' },
+                        'obj3': { id: 3, txt: 'Gestion de Proyectos' }
+                    },
+                    elementos4: {
+                        'obj1': { id: 1, txt: 'Prog WEB', esp: false },
+                        'obj2': { id: 2, txt: 'Redes', esp: false },
+                        'obj3': { id: 3, txt: 'Gestion de Proyectos', esp: false }
+                    },
+                    materias: [],
+                    tipoMateria: '',
+                    especialidad: false,
+                    actividadesExtra: [],
+                    nuevaMateria: '',
+                    materiasNuevas: [],
+                    materiasNuevas2: [],
+                    edicion: false,
+                    edad: 'Seleccione la edad',
+                    semestre: 'Seleccione la senestre',
+                    carrera: 'Seleccione la carrera'
+                }
+            },
+
+            methods: {
+                saludo() {
+                    alert("Magia magia con VUE")
+                },
+                saludo2(n) {
+                    alert("Hola " + n)
+                    this.nuevaMateria = ''
+                },
+                editar(bandera) {
+                    this.edicion = bandera
+                    this.nuevaMateria = ""
+                }
+            },
+            computed: {
+                contadorCaracteres() {
+                    return this.nuevaMateria.length
+                },
+                listaInversa() {
+                    return this.elementos2.reverse()
+                }
+            }
+        }).mount('#materias');
+
+        console.log(obj.mensaje)
+    </script>
+
+</body>
+
+</html>
